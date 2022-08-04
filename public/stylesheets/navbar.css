@@ -120,7 +120,7 @@ header .navbar ul li:hover > ul {
 /* - Will display hamburger drop down menu when a breakpoint is reached 
    - This code will only apply after the condition of max-width <= ____ px is true
    */
-@media (max-width: 1712px) {
+@media (max-width: 1400px) {
     header {
         padding: 20px;
     }
