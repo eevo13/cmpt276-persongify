@@ -28,5 +28,5 @@ Over time, both these users will have access to PERSONGIFY’s “Like” system
 
 This personalized music assistant is made for Spotify users who want to explore their music tastes and diversify their music knowledge. Whether on the go or chilling at home, PERSONGIFY will create a custom playlist to fit your needs.
 
-### Group Members:
+### Authors:
 Danh Vo (dva11), Japjot Dhaliwal (japjotd), Joshua Phang (jphang), Tao Ren (tra15), Tim Shyong (tjs14) 

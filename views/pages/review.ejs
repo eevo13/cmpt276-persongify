@@ -10,9 +10,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="stylesheets/navbar.css" />
         <link rel="stylesheet" href="stylesheets/review.css" />
+        <link rel="stylesheet" href="./stylesheets/modal.css" />
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
         <script src="scripts/navbar.js" defer></script>
         <script src="scripts/review.js" defer></script>
+        <script src="scripts/modal.js" defer></script>
         
         <title>PERSONGIFY - Year In Review</title>
     </head>
@@ -50,13 +52,13 @@
                         <ul>
                             <li><a href="/songs">Create Playlist</a></li>
                             <li><a href="/new-distance-playlist">Commute</a></li>
+                            <li><a href="/review">Year In Review</a></li>
                         </ul>
                     </li>
                     <li><a href="/trending">Trending</a></li>
                 <% if (!locals.signedIn) { %>
                     <li><a href="/newUser">Sign Up</a></li>
                     <li><a href="/login">Log In</a></li>
-                    <li><a href="/review">Year In Review</a></li>
                 <% } else { %>
                     <li><a href="/account">Hello, <%= locals.username %></a>
                         <ul>
@@ -71,23 +73,33 @@
             <!-- LINKS end -->
         </header>
         <!-- NAVBAR end --> 
-        <br>  
-        <br>  
-        <br>  
-        <br>  
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    
+        <div class="modal-wrapper" id="modal-wrapper">
+            <div class="modal">
+                <span class="close-button" onclick="hideModal()">&times;</span>
+                <h1>Year In Review</h1>
+                <br>
+                <p>Welcome, and thank you for using PERSONGIFY's Year In Review Feature!</p>
+                <br>
+                <p>This feature will summarize your listening history in the past year.
+                    We'll show you your top artists and tracks, and provide a mechanism for creating
+                    creating a playlist and sharing it to social media!
+                </p>
+                <br>
+                <p>The infographics will be displayed automatically, but hovering the mouse over them will
+                    pause the presentation.
+                </p>
+                <br>
+                <p>
+                    Unfortunately, if you are using a new account, the Spotify API does not have
+                    enough user data, and some fields may appear blank. If this happens, please try this feature again in the
+                    near future when you have listened to more songs. 
+                </p>
+                <br>
+                <p>Sincerely,</p>
+                <br>
+                <p>PERSONGIFY Dev Team</p>
+            </div>
+        </div>
         <!-- CAROUSEL start -->
         <div class="carousel">
             <!-- SLIDES start -->
@@ -102,14 +114,16 @@
                 <img src="./media/bg1.png" alt="Background" id="My-Top-Artist">
                 <div class="info">
                     <h2>My Top Artist</h2>
+                    <br>
                     <div class="artist-img"></div>
-                    <div class="text">
-                        <div class="top-artist-1">Artist #1</div>
+                    <br>
+                    <div class="text-bolder">
+                        <div class="top-artist-1">- - -</div>
                     </div>
                     <br>
                     <div class="text">
-                        Most Played Song
-                        <div class="most-played">Insert Song Here</div>
+                        Most Played Song: 
+                        <div class="most-played">- - -</div>
                     </div>
                 </div>
             </div>
@@ -117,34 +131,45 @@
                 <img src="./media/bg1.png" alt="Background" id="My-Top-Songs">
                 <div class="info">
                     <h2>My Top Song</h2>
+                    <br>
                     <div class="album-img"></div>
-                    <div class="text">
-                        <div class="top-tracks-1">Top Track Name</div>
+                    <br>
+                    <div class="text-bolder">
+                        <div class="top-tracks-1">- - -</div>
                     </div>
+                    <br>
                     <div class="text">
-                        <div class="top-track-artist">Top Track Artist Name</div>
+                        <div class="top-track-artist">By: - - -</div>
                     </div>
                 </div>
             </div>
             <div class="slide">
                 <img src="./media/bg1.png" alt="Background" id="Summary">
                 <div class="info">
+                    <br>
                     <div class="artist-img"></div>
-                    <h2>Top Artists</h2>
-                    <div class="text">
-                        <div class="top-artist-1">Artist #1</div>
-                        <div class="top-artist-2">Artist #2</div>
-                        <div class="top-artist-3">Artist #3</div>
-                        <div class="top-artist-4">Artist #4</div>
-                        <div class="top-artist-5">Artist #5</div>
-                    </div>
-                    <h2>Top Tracks</h2>
-                    <div class="text">
-                        <div class="top-tracks-1">Track #1</div>
-                        <div class="top-tracks-2">Track #2</div>
-                        <div class="top-tracks-3">Track #3</div>
-                        <div class="top-tracks-4">Track #4</div>
-                        <div class="top-tracks-5">Track #5</div>
+                    <br>
+                    <div class="flex-wrapper">
+                        <div class="column">
+                            <h2>Top Artists</h2>
+                            <div class="text">
+                                <div class="top-artist-1">1.</div>
+                                <div class="top-artist-2">2.</div>
+                                <div class="top-artist-3">3.</div>
+                                <div class="top-artist-4">4.</div>
+                                <div class="top-artist-5">5.</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h2>Top Tracks</h2>
+                            <div class="text">
+                                <div class="top-tracks-1">1.</div>
+                                <div class="top-tracks-2">2.</div>
+                                <div class="top-tracks-3">3.</div>
+                                <div class="top-tracks-4">4.</div>
+                                <div class="top-tracks-5">5.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,10 +189,5 @@
             <!-- SLIDES end -->
         </div>
         <!-- CAROUSEL end -->
-        <div class="testing">
-            Testing Area!
-            <!-- <div class="artist-img"></div>
-            <div class="album-img"></div> -->
-        </div>
     </body>
 </html>

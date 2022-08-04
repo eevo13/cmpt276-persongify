@@ -5,18 +5,32 @@
     font-family: "Abel";
 }
 
+body {
+    background-image: url(../media/bg-hollow.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 5px 25px rgba(239, 0, 126, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .carousel {
     position: relative;
     background-color: rgb(15, 0, 39);
-    width: 500px;
-    height: 800px;
+    width: 550px;
+    height: 1000px;
     overflow: hidden;
+    border: 2px solid rgb(239, 0, 126);
 }
 
 .carousel .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    width: 500px;
-    height: 800px;
+    width: 550px;
+    height: 1000px;
     clip-path: circle(0% at 0 50%);
 }
 
@@ -35,80 +49,83 @@
 .carousel .slide .info {
     position: absolute;
     color: white;
-    width: 75%;
-    margin-top: 50px;
-    margin-left: 50px;
+    width: 90%;
+    text-align: center;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 5px 25px rgb( 1 1 1 / 5%);
+    box-shadow: 0 5px 25px rgba(239, 0, 126, 1);
 }
-
 
 .carousel .slide .info h2 {
     color:  rgb(239, 0, 126);
     font-size: 3em;
     font-weight: bolder;
-    /* font-weight: 800; */
 }
 
 .carousel .slide .info h1 {
     color:  white;
     font-size: 5em;
     font-weight: bolder;
-    /* font-weight: 800; */
 }
 
-/* .carousel .slide .info p {
-    font-size: 2em;
-    background: rgba(255, 255, 255, 0.3);
-} */
 
-#Start {
-    display: flex;
-    justify-content: center;
-    align-content: space-between;
-}
-
-/* #Summary {
-    display: grid;
-    grid-template-areas: "a a"
-                         "b b"
-} */
 
 .carousel .slide .info .text {
     font-size: 2em;
-    background: rgba(255, 255, 255, 0.3);
 }
+
+.carousel .slide .info .text-bolder {
+    font-size: 3em;
+    font-weight: bolder;
+}
+
 
 .artist-img {
     height: 320px;
     width: 320px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .album-img {
     height: 300px;
     width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* #Start {
+.flex-wrapper {
     display: flex;
-    justify-content: center;
-    align-content: space-between;
-} */
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    text-align: left;
+    margin: 5px;
+}
 
 /* other css */
 .gen-playlist {
     display: flex;
     flex-wrap: wrap;
     color: white;
-    /* background-color: rgba(85, 0, 98, 0.8); */
     align-items: center;
     justify-content: center;
     height: 200px;
-    width: 250px;
+    width: 200px;
     /* margin-left: 300px; */
     border: 2px solid black;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .playlist-text {

@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="./stylesheets/navbar.css" />
         <script src="scripts/navbar.js" defer></script>
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+        <script src="scripts/pass-verify.js" defer></script>
         
     </head>
     <body>
@@ -93,16 +94,23 @@
                     </div>
                     <span class="input-group-text">years old</span>
                 </div>
-                <!-- TODO: add password verification (double entry) -->
                 <!-- password -->
                 <div class="form-floating flex-grow-1 mb-3">
                     <input type="password" id="pwd" name="f_pwd"
                     class="form-control" placeholder="Password"
                     required>
-                    <label for="age">Password</label>
+                    <label for="pwd">Password</label>
                 </div>
+                <div class="form-floating flex-grow-1 mb-3">
+                    <input type="password" id="pwdChk" name="f_pwdChk"
+                    class="form-control" placeholder="Confirm Password"
+                    required>
+                    <label for="pwd">Confirm Password</label>
+                </div>
+                <!-- password mismatch warning -->
+                <p id="pwdWarning" class="fs-4 display-6 text-white mb-3" style="display: none;">Please ensure the passwords match.</p>
                 <!-- form buttons -->
-                <div class="d-grid gap-3">
+                <div class="d-grid gap-3 mt-3">
                     <button type="reset" value="Reset"
                     class="btn btn-danger btn-sm btn-block">Reset</button>
                     <button type="submit" value="Submit" id="formSubmit"

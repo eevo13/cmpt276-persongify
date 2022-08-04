@@ -77,11 +77,8 @@ describe("Generating Distance Calcs", () => {
             });
         agent.close();
     })
-})
 
-// TODO: check for travel time calculation
-describe("travel time", () => {
-    it("should be less than the song time POST /distance-playlist", async() => {
+    it("should be less than the playlist length on POST /distance-playlist", async() => {
         var userInfo = {
             f_uname: "appTester123",
             f_pwd: "testpwd123",

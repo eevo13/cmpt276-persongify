@@ -59,7 +59,7 @@
             - assumes there is only 1 origin, 1 destination
             - means only 1 result should be returned in dist_mat_results
         -->
-        <!-- TODO: change text color/add text backdrop -->
+        <!-- change text color/add text backdrop -->
         <!-- <div class="container text-light bg-dark rounded" style="margin-top: 170px">
             <ul>
                 <li>going from <%= dist_mat_results.orig_address[0] %></li>
@@ -73,7 +73,8 @@
             <h1 class="display-1 text-white"><span class="span-magenta">PERSONGIFY</span> Travel</h1>
             <h1 class="display-4 text-white">Enjoy your generated playlist!</h1>
             <h1 class="display-6 text-white">
-                Travel time: <%= dist_mat_results.travel_results[0].elements[0].duration.text %>    |    
+                Travel time: <%= dist_mat_results.travel_results[0].elements[0].duration.text %>
+                <span class="span-magenta">|</span>
                 Playlist length: <%= spotify_results.total_time %>
             </h1>
         </div>
