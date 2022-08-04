@@ -51,10 +51,10 @@ var encryptSHA256 = function (plain) {
  * @returns true if cookie exists, false otherwise
  */
 var checkAuthorizedUser = function (req) {
-  console.log(
-    "req.signedCookies['persongify_auth']: ",
-    req.signedCookies["persongify_auth"]
-  );
+  // console.log(
+  //   "req.signedCookies['persongify_auth']: ",
+  //   req.signedCookies["persongify_auth"]
+  // );
   if (req.signedCookies["persongify_auth"]) return true;
   return false;
 };
@@ -124,7 +124,7 @@ app.post("/addUser", async (req, res) => {
   var rows = await pool.query(query, values);
   if (notEmptyQueryCheck(rows)) {
     res.cookie("persongify_auth", userName, { signed: true });
-    console.log("successfully added user: " + userName);
+    // console.log("successfully added user: " + userName);
     app.locals.signedIn = true;
     app.locals.username = userName;
     let url = app.locals.redir;
@@ -151,7 +151,7 @@ app.post("/verify-login", async (req, res) => {
   var rows = await pool.query(query, values);
   if (notEmptyQueryCheck(rows)) {
     res.cookie("persongify_auth", chk_uname, { signed: true });
-    console.log("successfully logged on user: " + chk_uname);
+    // console.log("successfully logged on user: " + chk_uname);
     app.locals.signedIn = true;
     app.locals.username = chk_uname;
     let url = "/spotify-login";     // when user logs in, must also go thru spotify
@@ -204,8 +204,8 @@ app.get("/spotify-callback", (req, res) => {
   // given from login redirect
   var code = req.query.code || null;
   var state = req.query.state || null;
-  console.log("code: " + code);
-  console.log("state: " + state);
+  // console.log("code: " + code);
+  // console.log("state: " + state);
   if (state === null) {
     res.send("STATE MISMATCH");
   } else {
@@ -237,7 +237,7 @@ app.get("/spotify-callback", (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error.response);
+      // console.log(error.response);
       res.send(error);
     });
   }
@@ -278,7 +278,7 @@ var spotifyApi = new SpotifyWebApi({
 // Retrieve an access token.
 spotifyApi.clientCredentialsGrant().then(
   function (data) {
-    console.log("The access token expires in " + data.body["expires_in"]);
+    // console.log("The access token expires in " + data.body["expires_in"]);
 
     // Save the access token so that it's used in future calls
     spotifyApi.setAccessToken(data.body["access_token"]);
@@ -291,7 +291,7 @@ spotifyApi.clientCredentialsGrant().then(
 app.get("/play_some_song", (req, res) => {
   spotifyApi.play().then(
     function () {
-      console.log("Playback started");
+      // console.log("Playback started");
     },
     function (err) {
       // if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
@@ -303,7 +303,7 @@ app.get("/play_some_song", (req, res) => {
 app.post("/songs", function (req, res) {
   var id = [];
 
-  console.log(req.body);
+  // console.log(req.body);
 
   var limit = req.body.limit;
   genre = req.body.genre;
@@ -325,12 +325,12 @@ app.post("/songs", function (req, res) {
     .searchArtists(seed_artist)
     .then(function (data) {
       let artists = data.body.artists.items;
-      console.log(artists[0].id);
+      // console.log(artists[0].id);
       return artists[0].id;
     })
     .then(function (id) {
       artist_id = id;
-      console.log(artist_id);
+      // console.log(artist_id);
       return spotifyApi.searchTracks(seed_song);
     })
 
@@ -340,7 +340,7 @@ app.post("/songs", function (req, res) {
     })
 
     .then(function (song_id) {
-      console.log(song_id);
+      // console.log(song_id);
       return spotifyApi.getRecommendations({
         limit: limit,
         seed_genres: genre,
@@ -352,7 +352,7 @@ app.post("/songs", function (req, res) {
       });
     })
     .then(function (data) {
-      console.log("working");
+      // console.log("working");
 
       let recommendations = data.body.tracks;
 
@@ -361,7 +361,7 @@ app.post("/songs", function (req, res) {
         artists.push(recommendations[i].artists[0].name);
         audios.push(recommendations[i].id);
         images.push(recommendations[i].album.images[0].url);
-        console.log(recommendations);
+        // console.log(recommendations);
       }
 
       //res.json({ songs, artists, audios, images})
@@ -448,7 +448,7 @@ app.post("/distance-playlist", (req, res) => {
       .then(async (response) => {
         // const results = response.data;
         // res.send(JSON.stringify(results));
-        console.log("successful distance calculation");
+        // console.log("successful distance calculation");
         const dist_mat_results = {
           orig_address: response.data.origin_addresses,
           dest_address: response.data.destination_addresses,
@@ -488,7 +488,7 @@ app.post("/distance-playlist", (req, res) => {
             var track_ids = [];
             var images = [];
             var target_len = dist_mat_results.travel_results[0].elements[0].duration.value; // in seconds
-            console.log(`target_len: ${target_len}`);
+            // console.log(`target_len: ${target_len}`);
             var total_len = 0;
 
             // get song lengths, store total time
@@ -506,10 +506,10 @@ app.post("/distance-playlist", (req, res) => {
                 await spotifyApi
                   .getAudioFeaturesForTrack(recomm[i].id)
                   .then((data) => {
-                    console.log(`length of ${recomm[i].name}: ${data.body.duration_ms / 1000}`);
+                    // console.log(`length of ${recomm[i].name}: ${data.body.duration_ms / 1000}`);
                     total_len += data.body.duration_ms / 1000;    // convert ms to sec
                   })
-                console.log(`total_len after iteration ${i}: ${total_len}`);
+                // console.log(`total_len after iteration ${i}: ${total_len}`);
               } else {
                 break;    // target time reached, exit early
               }
