@@ -226,7 +226,6 @@ function shareStatus(response) {
     } else {
       FB.login();
       shareAPI();
-      console.log("couldn't login to facbeook ;("); 
     }
 }
 
